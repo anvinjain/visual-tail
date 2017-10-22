@@ -9,6 +9,11 @@ var DgrepFetcher = require('./lib/ds/dgrep');
 var PongPayload = require('./lib/vis/pong/payload');
 var $ = require('jquery');
 
+var dgrepApi = "10.47.5.141";
+var appId = "fk-prof";
+var messageObj = "fk-prof-backend_request";
+var searchStr = "obj@" + messageObj;
+
 var container = $('div.bogey-visualization-container').get(0);
 var bogey = new Bogey(container, null);
 Pong.run(bogey);
@@ -35,14 +40,15 @@ var getCallback = function() {
 }
 
 var transformer = function(msg) {
-    if(msg.message == "obj" && msg.object["fkpbackend_request"]) {
-        var log = msg.object["fkpbackend_request"];
+    if(msg.message == "obj" && msg.object[messageObj]) {
+        var log = msg.object[messageObj];
         return new PongPayload(log.status, log.verb + " " + log.url, log.client_ip);
     }
+    console.log("Cannot transform ", msg);
     return null;
 }
 
-var url = "http://10.47.5.141/query?app_id=fk-prof&substr=obj@fkpbackend_request";
+var url = "http://" + dgrepApi + "/query?app_id=" + appId + "&substr=" + searchStr;
 var callback = getCallback();
 var fetcher = new DgrepFetcher(url, transformer, callback);
 fetcher.runWithRepeat();
