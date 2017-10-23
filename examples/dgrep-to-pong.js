@@ -8,6 +8,7 @@ class DgrepToPong {
     this.searchStr = searchStr;
     this.url = "http://" + api + "/query?app_id=" + appId + "&substr=" + searchStr;
     this.smoothening = false;
+    this.sampling = 1;
 
     this.bogey = bogey;
     Pong.run(this.bogey);
@@ -19,6 +20,10 @@ class DgrepToPong {
 
   disableSmoothening() {
     this.smoothening = false;
+  }
+
+  setSampling(sampling) {
+    this.sampling = sampling;
   }
 
   run(transformer) {
@@ -75,6 +80,7 @@ class DgrepToPong {
       switch(entry.type) {
         case "data":
             if(entry.msg) {
+                if(Math.random() >= this.sampling) { return; }
                 entryCounter++;
                 if(this.smoothening) {
                   setTimeout(() => handler(entry.msg), smootheningDelay());
@@ -82,7 +88,7 @@ class DgrepToPong {
                   setTimeout(() => handler(entry.msg), 0);
                 }
             } else { //error while transforming msg so received null
-                console.warn("Invalid payload received, skipping it");
+                console.debug("Invalid payload received, skipping it");
             }
             break;
         case "error":
