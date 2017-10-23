@@ -6,7 +6,7 @@ class DgrepToPong {
     this.api = api;
     this.appId = appId;
     this.searchStr = searchStr;
-    this.url = "http://" + api + "/query?app_id=" + appId + "&substr=" + searchStr;
+    this.url = api + "?app_id=" + appId + "&substr=" + searchStr;
     this.smoothening = false;
     this.sampling = 1;
 
