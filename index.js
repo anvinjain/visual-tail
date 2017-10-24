@@ -4,12 +4,7 @@ window.p2 = require('phaser/build/custom/p2');
 window.Phaser = require('phaser/build/custom/phaser-split');
 
 var $ = require('jquery');
-var Bogey = require('./lib/bogey');
 var Util = require('./lib/util');
-var Pong = require('./lib/vis/pong');
-var HttpStreamingJsonSource = require('./lib/datasource/http-streaming-json-source');
-var PongPayload = require('./lib/vis/pong/payload');
-
 var FkProfRequests = require('./examples/fk-prof-requests');
 var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
 
