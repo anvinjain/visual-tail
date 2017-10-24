@@ -16,6 +16,7 @@ var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
 var container = $('div.bogey-visualization-container').get(0);
 var api = "http://10.47.5.141/query";
 
+var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages"];
 var name = Util.getUrlParameter('name');
 switch(name) {
     case "fkp-backend-requests":
@@ -31,5 +32,12 @@ switch(name) {
         varadhiConsumerMessages.run();
         break;
     default:
-        $(container).text("Invalid visualization name: " + name).css("color", "white");
+        var links = visualizations.map(v => {
+            return '<li><a href="' + window.location.toString() + '?name=' + v + '">' + v + '</a></li>';
+        });
+        $(container)
+        .css("color", "#ddd")
+        .css("padding", "20px")
+        .css("line-height", "2")
+        .html("Available visualizations<ul>" + links.join("") + "</ul>");
 }
