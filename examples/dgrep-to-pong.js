@@ -1,4 +1,4 @@
-var Pong = require('../lib/vis/pong');
+var Pong = require('../lib/vis/bogey/pong');
 var HttpStreamingJsonSource = require('../lib/datasource/http-streaming-json-source');
 
 class DgrepToPong {

@@ -1,6 +1,6 @@
-var Bogey = require('../lib/bogey');
+var Bogey = require('../lib/vis/bogey');
 var DgrepToPong = require('./dgrep-to-pong');
-var PongPayload = require('../lib/vis/pong/payload');
+var PongPayload = require('../lib/vis/bogey/pong/payload');
 
 class FkProfRequests {
   constructor(container, api, appId, messageObj) {
