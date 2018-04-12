@@ -7,11 +7,12 @@ var $ = require('jquery');
 var Util = require('./lib/util');
 var FkProfRequests = require('./examples/fk-prof-requests');
 var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
+var CfgSvcRequests = require('./examples/config-svc-requests');
 
 var container = $('div.bogey-visualization-container').get(0);
 var api = "http://10.47.5.141/query";
 
-var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages"];
+var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages", "cfgsvc-api-ch-requests"];
 var name = Util.getUrlParameter('name');
 switch(name) {
     case "fkp-backend-requests":
@@ -25,6 +26,10 @@ switch(name) {
     case "varadhi-consumer-messages":
         var varadhiConsumerMessages = new VaradhiConsumerMessages(container, api, "prod-varadhi", "HttpMessageProcessor", "varadhi");
         varadhiConsumerMessages.run();
+        break;
+    case "cfgsvc-api-ch-requests":
+        var cfgsvcApiCHRequests = new CfgSvcRequests(container, api, "config-service", "config-service-api-requests");
+        cfgsvcApiCHRequests.run();
         break;
     default:
         var links = visualizations.map(v => {
