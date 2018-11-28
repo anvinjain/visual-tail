@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="dist/css/tracker_announces.css" rel="stylesheet">
+    
+    <title>Announces - Visual Tail</title>
+  </head>
+  <body>
+    <noscript>Sorry, visualizations require JavaScript.</noscript>
+    <div class="vis-container">
+      <h1>Realtime announces from Shatabdi Tracker</h1>
+    </div>
+
+    <div id="ih-container-tmpl" style="display: none">
+      <div class="ih-header"></div>
+      <div class="ih-body"></div>
+    </div>
+    <div id="peer-tmpl" style="display: none">
+      <div class="peer-ip"></div>
+      <div class="peer-body">
+        <div class="peer-body-tag"><span class="fas fa-hourglass-start"></span></div>
+        <div class="peer-body-value peer-left"></div>
+      </div>
+      <div class="peer-body">
+        <div class="peer-body-tag"><span class="fas fa-arrow-circle-down"></span></div>
+        <div class="peer-body-value peer-down"></div>
+      </div>
+      <div class="peer-body">
+        <div class="peer-body-tag"><span class="fas fa-arrow-circle-up"></span></div>
+        <div class="peer-body-value peer-up"></div>
+      </div>
+    </div>
+    <script src="dist/js/tracker_announces.js"></script>
+  </body>
+</html>

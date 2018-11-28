@@ -13,33 +13,55 @@ var gutil = require('gulp-util');
 var packageJson = require(__dirname + '/package.json');
 var _ = require('underscore');
 
-// add custom browserify options here
-var customOpts = {
-  entries: ['./index.js'],
-  debug: true
-};
 
-var opts = {};
-_.extend(opts, watchify.args, customOpts);
-var b = watchify(browserify(opts)); 
+var entries = ['./index.js', 'tracker_announces.js'];
+// add custom browserify options here
+// var customOpts = {
+//   debug: true
+// };
+
+// var opts = {};
+// _.extend(opts, watchify.args, customOpts);
+// var b = watchify(browserify(opts)); 
 
 gulp.task('build', bundle);
-b.on('update', bundle); // on any dep update, runs the bundler
-b.on('log', gutil.log); // output build logs to terminal
+
+
+// b.on('update', bundle); // on any dep update, runs the bundler
+// b.on('log', gutil.log); // output build logs to terminal
 
 gulp.task('default', [ 'build' ]);
 
+bundlers = [];
+entries.forEach(entry => {
+    var customOpts = {
+        debug: true,
+        entries: [ entry ]
+    }
+    var opts = {};
+    _.extend(opts, watchify.args, customOpts);
+    var b = watchify(browserify(opts)); 
+    var bundler = bundleEntry(b, entry);
+    b.on('update', bundler); // on any dep update, runs the bundler
+    b.on('log', gutil.log); // output build logs to terminal
+    bundlers.push(bundler);
+});
+
 function bundle() {
-    return b.bundle()
+    bundlers.forEach(b => b());
+}
+
+function bundleEntry(b, entry) {
+    return function() {
+        b.bundle()
         .on('error', gutil.log.bind(gutil, 'Browserify Error'))
-        .pipe(source('index.js'))
+        .pipe(source(entry))
         .pipe(buffer())
         .pipe(sourcemaps.init({loadMaps: true})) // loads map from browserify file
         .pipe(sourcemaps.write('./')) // writes .map file
         .pipe(gulp.dest('./dist/js'));
+    }
 }
-
-
 
 gulp.task('less', function () {
   var stream = gulp.src('css/*.less')

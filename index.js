@@ -8,11 +8,12 @@ var Util = require('./lib/util');
 var FkProfRequests = require('./examples/fk-prof-requests');
 var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
 var CfgSvcRequests = require('./examples/config-svc-requests');
+var ShatabdiTrackerAnnounces = require('./examples/tracker-announces');
 
 var container = $('div.bogey-visualization-container').get(0);
 var api = "http://10.47.5.141/query";
 
-var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages", "cfgsvc-api-ch-requests"];
+var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages", "cfgsvc-api-ch-requests", "shatabdi-tracker-announces"];
 var name = Util.getUrlParameter('name');
 switch(name) {
     case "fkp-backend-requests":
@@ -30,6 +31,9 @@ switch(name) {
     case "cfgsvc-api-ch-requests":
         var cfgsvcApiCHRequests = new CfgSvcRequests(container, api, "config-service", "config-service-api-requests");
         cfgsvcApiCHRequests.run();
+        break;
+    case "shatabdi-tracker-announces":
+        window.location.href = "/tracker_announces.html?app=shatabdi";
         break;
     default:
         var links = visualizations.map(v => {
