@@ -23,6 +23,9 @@ Pong represents web server traffic as a giant pong game. Every request is a ball
 
 Pong uses the [Phaser](http://phaser.io/) game engine. It also comes with a bunch of themes based on popular coding color schemes.
 
+#### Announces visualization
+Visualizes announces received by chihaya, a popular torrent tracker. Announces are grouped by infohash and display following stats: left bytes, downloaded bytes and uploaded bytes for every peer announcing for the infohash. Dashboard is kept in sync with the backing data stream which has json logs emitted by chihaya.
+
 ---
 
 ### Build and Run
