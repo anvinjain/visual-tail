@@ -10,6 +10,7 @@ html, body {
   margin: 0;
   padding: 0;
   background: #192024;
+  font-family: 'PT Sans Narrow', sans-serif;
 }
 
 noscript {
@@ -23,6 +24,34 @@ noscript {
   font-size: 22px;
 }
 
+#vis-list {
+    display: flex; 
+    flex-wrap: wrap;
+    z-index: 10;
+}
+
+#vis-list-item {
+    flex: 0 0 350px; 
+    margin: 16px; 
+    padding: 0;
+    border: 1px solid #30393E;
+    text-align: center;
+    z-index: 1000;
+
+    a {
+        display: block;
+        padding: 16px;
+        background: #232c31; 
+        text-decoration: none;
+        color: @link-color;
+        cursor: pointer;
+
+        &:hover {
+            background: @link-color;
+            color: #232c31;
+        }
+    }
+}
 
 #bogey-home {
     width: 100%;
@@ -157,6 +186,15 @@ div.bogey-visualization-container {
     height: 100%;
     overflow: hidden;
     transition: opacity .7s;
+
+    h1 {
+        color: rgba(255,255,255,0.9);
+        margin: 8px 16px;
+        font-size: 64px;
+        display: block;
+        height: 100px;
+        line-height: 100px;
+    }
 }
 
 div.bogey-message {

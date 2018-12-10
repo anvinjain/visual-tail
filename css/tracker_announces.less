@@ -37,24 +37,41 @@ noscript {
     flex-direction: column;
     background-color: @bg-color;
     color: rgba(255,255,255,0.9);
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'PT Sans Narrow', sans-serif;
     -webkit-font-smoothing: antialiased;
+
+    .header {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .groupby {
+        flex: 1; 
+        justify-content: center; 
+        display: flex; 
+        margin: 0 8px; 
+        flex-direction: row;
+    }
 
     a {
         color: @link-color;
         text-decoration: none;
-
+        border: 1px solid @link-color;
+        padding: 8px;
+        width: 60px;
         &:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
+    }
+
+    a.selected {
+        background-color: @link-color;
+        color: rgba(255,255,255,0.9);
     }
 
     &.hidden {
         opacity: 0;
-    }
-
-    h1, h2, h3, h4 {
-        font-family: 'PT Sans Narrow', sans-serif;
     }
 
     h1 {
@@ -65,7 +82,7 @@ noscript {
     }
 }
 
-.ih-container {
+.l1-container {
     background: @visualizations-bg-color;
     padding: 16px 24px;
     border-top: 1px solid lighten(@visualizations-bg-color, 5%);
@@ -74,26 +91,29 @@ noscript {
     font-family: 'Courier New', Courier, monospace;
     margin: 8px 0;
 
-    .ih-header {
+    .l1-header {
         flex: 0;
         align-self: center;
         color: #faa520;
         width: 200px;
+        max-width: 200px;
         word-wrap: break-word;
         margin-right: 16px;
     }
 
-    .ih-body {
+    .l1-body {
         display: flex; 
         flex-flow: row wrap;
         flex: 1;
 
-        .peer {
+        .l2-container {
             display: flex; 
             flex-flow: column nowrap;
             padding: 8px;
             margin: 8px 8px;
-            width: 140px;
+            min-width: 140px;
+            max-width: 200px;
+            word-wrap: break-word;
         }
 
         .seeder {
@@ -108,24 +128,24 @@ noscript {
     }
 }
 
-.peer-ip {
+.l2-header {
     color: #fff;
     margin: 4px 0;
     font-weight: 900;
 }
 
-.peer-body {
+.l2-body {
     display: flex;
     font-size: 12px;
     margin-top: 4px;
 
-    .peer-body-tag {
+    .l2-body-tag {
         margin-right: 4px;
         text-align: center;
         width: 20px;
     }
 
-    .peer-body-value {
+    .l2-body-value {
         flex: 1;
         text-align: right;
     }

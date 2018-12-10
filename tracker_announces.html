@@ -11,26 +11,34 @@
   <body>
     <noscript>Sorry, visualizations require JavaScript.</noscript>
     <div class="vis-container">
-      <h1>Realtime announces from Shatabdi Tracker</h1>
+      <div class="header">
+        <div>
+          <h1>Realtime announces from Shatabdi Tracker</h1>
+        </div>
+        <div class="groupby">
+          <div><a href="#" id="groupby-infohash">Infohash</a></div>
+          <div><a href="#" id="groupby-peer">Peer</a></div>
+        </div>
+      </div>
     </div>
 
-    <div id="ih-container-tmpl" style="display: none">
-      <div class="ih-header"></div>
-      <div class="ih-body"></div>
+    <div id="l1-tmpl" style="display: none">
+      <div class="l1-header"></div>
+      <div class="l1-body"></div>
     </div>
-    <div id="peer-tmpl" style="display: none">
-      <div class="peer-ip"></div>
-      <div class="peer-body">
-        <div class="peer-body-tag"><span class="fas fa-hourglass-start"></span></div>
-        <div class="peer-body-value peer-left"></div>
+    <div id="l2-tmpl" style="display: none">
+      <div class="l2-header"></div>
+      <div class="l2-body">
+        <div class="l2-body-tag"><span class="fas fa-hourglass-start"></span></div>
+        <div class="l2-body-value torrent-left"></div>
       </div>
-      <div class="peer-body">
-        <div class="peer-body-tag"><span class="fas fa-arrow-circle-down"></span></div>
-        <div class="peer-body-value peer-down"></div>
+      <div class="l2-body">
+        <div class="l2-body-tag"><span class="fas fa-arrow-circle-down"></span></div>
+        <div class="l2-body-value torrent-down"></div>
       </div>
-      <div class="peer-body">
-        <div class="peer-body-tag"><span class="fas fa-arrow-circle-up"></span></div>
-        <div class="peer-body-value peer-up"></div>
+      <div class="l2-body">
+        <div class="l2-body-tag"><span class="fas fa-arrow-circle-up"></span></div>
+        <div class="l2-body-value torrent-up"></div>
       </div>
     </div>
     <script src="dist/js/tracker_announces.js"></script>

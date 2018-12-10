@@ -3,9 +3,9 @@ var Announces = require('../lib/vis/announces');
 var AnnouncePayload = require('../lib/vis/announces/payload');
 
 class TrackerAnnounces {
-  constructor(container, api, appId) {
+  constructor(container, api, appId, groupBy) {
     this.url = api + "?app_id=" + appId + "&substr=obj@chihaya";
-    this.announces = new Announces(container);
+    this.announces = new Announces(container, groupBy);
   }
 
   run() {

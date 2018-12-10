@@ -8,12 +8,18 @@ var Util = require('./lib/util');
 var FkProfRequests = require('./examples/fk-prof-requests');
 var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
 var CfgSvcRequests = require('./examples/config-svc-requests');
-var ShatabdiTrackerAnnounces = require('./examples/tracker-announces');
 
 var container = $('div.bogey-visualization-container').get(0);
 var api = "http://10.47.5.141/query";
 
-var visualizations = ["fkp-backend-requests", "fkp-userapi-requests", "varadhi-consumer-messages", "cfgsvc-api-ch-requests", "shatabdi-tracker-announces"];
+var visualizations = [
+//    ["fkp-backend-requests", "Fk-Prof Backend Requests"],
+//    ["fkp-userapi-requests", "Fk-Prof Userapi Requests"],
+    ["varadhi-consumer-messages", "Varadhi Consumer Messages"],
+    ["cfgsvc-api-ch-requests", "Config API CH Prod Requests"],
+    ["shatabdi-tracker-announces", "Shatabdi Tracker Announces"],
+];
+console.log(visualizations);
 var name = Util.getUrlParameter('name');
 switch(name) {
     case "fkp-backend-requests":
@@ -33,15 +39,14 @@ switch(name) {
         cfgsvcApiCHRequests.run();
         break;
     case "shatabdi-tracker-announces":
-        window.location.href = "/tracker_announces.html?app=shatabdi";
+        window.location.href = "/tracker_announces.html?app=shatabdi&group=infohash";
         break;
     default:
         var links = visualizations.map(v => {
-            return '<li><a href="' + window.location.toString() + '?name=' + v + '">' + v + '</a></li>';
+            return '<div id="vis-list-item"><a href="' + window.location.toString() + '?name=' + v[0] + '">' + v[1] + '</a></div>';
         });
-        $(container)
-        .css("color", "#ddd")
-        .css("padding", "20px")
-        .css("line-height", "2")
-        .html("Available visualizations<ul>" + links.join("") + "</ul>");
+        var linkContainer = $('<div id="vis-list"></div>');
+        linkContainer.html(links.join(""));
+        var heading = $("<h1>Visualizations over DGrep</h1>");
+        $(container).append(heading).append(linkContainer);
 }
