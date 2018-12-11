@@ -14,7 +14,7 @@ var packageJson = require(__dirname + '/package.json');
 var _ = require('underscore');
 
 
-var entries = ['./index.js', 'tracker_announces.js'];
+var entries = ['index.js', 'tracker_announces.js'];
 // add custom browserify options here
 // var customOpts = {
 //   debug: true
@@ -49,6 +49,16 @@ entries.forEach(entry => {
 
 function bundle() {
     bundlers.forEach(b => b());
+    copyConfig();
+    watchConfig();
+}
+
+function watchConfig() {
+    gulp.watch('config.js', copyConfig);
+}
+
+function copyConfig() {
+    gulp.src('config.js').pipe(gulp.dest('./dist/js'));
 }
 
 function bundleEntry(b, entry) {

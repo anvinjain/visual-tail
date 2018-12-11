@@ -1,3 +1,5 @@
+console.info("Configuration", config);
+
 //Init for phaser engine
 window.PIXI = require('phaser/build/custom/pixi');
 window.p2 = require('phaser/build/custom/p2');
@@ -10,16 +12,16 @@ var VaradhiConsumerMessages = require('./examples/varadhi-consumer-messages');
 var CfgSvcRequests = require('./examples/config-svc-requests');
 
 var container = $('div.bogey-visualization-container').get(0);
-var api = "http://10.47.5.141/query";
+var api = config.logsApi;
 
 var visualizations = [
 //    ["fkp-backend-requests", "Fk-Prof Backend Requests"],
 //    ["fkp-userapi-requests", "Fk-Prof Userapi Requests"],
-    ["varadhi-consumer-messages", "Varadhi Consumer Messages"],
-    ["cfgsvc-api-ch-requests", "Config API CH Prod Requests"],
+    ["varadhi-consumer-messages", "Varadhi Consumer Messages (1% sampling)"],
+    ["cfgsvc-api-ch-requests", "Config API Requests (10% sampling)"],
     ["shatabdi-tracker-announces", "Shatabdi Tracker Announces"],
 ];
-console.log(visualizations);
+
 var name = Util.getUrlParameter('name');
 switch(name) {
     case "fkp-backend-requests":
