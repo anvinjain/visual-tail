@@ -12,7 +12,7 @@ ssh -t $REMOTE_SERVER "cd ${REMOTE_LOCATION}; tar -xvzf ${RELEASE_FILE}; rm -rf 
 
 cat > ${LOCAL_LOCATION}/config.js <<EOL
 var config = {
-  logsApi: "/dgrep"
+  logsApi: "${DGREP_API}"
 }
 EOL
 
@@ -23,10 +23,6 @@ server {
   server_name localhost;
   listen 80;
   root ${REMOTE_LOCATION};
-  location /dgrep {
-    proxy_pass ${DGREP_API};
-    proxy_pass_request_headers on;
-  }
 }
 EOL
 
